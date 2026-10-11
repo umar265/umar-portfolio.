@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Umar Chaudhary — BS Artificial Intelligence student at BZU Multan, building software and web projects with C++, Python, HTML and CSS.">
+  <title>Umar Chaudhary | AI Student & Developer</title>
+  <style>
+    :root {
+      --bg: #050b16;
+      --surface: #0b1526;
+      --surface-2: #0e1b30;
+      --text: #f2f6ff;
+      --muted: #a8b7cf;
+      --blue: #2794ff;
+      --cyan: #61d5ff;
+      --border: rgba(130, 170, 225, .17);
+      --shadow: 0 18px 55px rgba(0, 0, 0, .28);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      background: radial-gradient(ellipse at 80% 0%, rgba(20, 90, 180, .13), transparent 38%), var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(5, 11, 22, .86); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-size: 1.08rem; font-weight: 800; white-space: nowrap; }
+    .brand-mark { color: var(--blue); font-size: 1.5rem; font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: .92rem; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+    .menu-toggle { display: none; border: 1px solid var(--border); color: var(--text); background: var(--surface); padding: 8px 12px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 1px solid transparent; border-radius: 999px; padding: 12px 20px;
+      background: linear-gradient(110deg, var(--blue), #1470e8); color: white;
+      font-weight: 750; font-size: .93rem; box-shadow: 0 8px 26px rgba(39, 148, 255, .2);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(39, 148, 255, .32); }
+    .btn.secondary { background: transparent; border-color: rgba(86, 166, 255, .55); box-shadow: none; }
+    .btn.secondary:hover { background: rgba(39, 148, 255, .1); }
+    .hero { padding: 90px 0 82px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 60px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--cyan); font-size: .9rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--cyan); }
+    h1 { margin: 18px 0 12px; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.04; letter-spacing: -.055em; }
+    .gradient-text { color: var(--blue); background: linear-gradient(100deg, #54baff, #2583ff 65%, #8d83ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero h2 { color: #dbe8fb; font-size: clamp(1.15rem, 2.4vw, 1.55rem); font-weight: 650; }
+    .hero-copy { color: var(--muted); max-width: 590px; margin: 20px 0 28px; font-size: 1.06rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .socials { display: flex; gap: 17px; margin-top: 28px; color: var(--muted); font-size: .92rem; }
+    .socials a { border-bottom: 1px solid transparent; }
+    .socials a:hover { color: var(--cyan); border-color: var(--cyan); }
+    .hero-art { min-height: 390px; position: relative; display: grid; place-items: center; }
+    .orb { position: absolute; width: 310px; height: 310px; border-radius: 50%; background: radial-gradient(circle, rgba(39,148,255,.28), rgba(39,148,255,.02) 68%, transparent 70%); filter: blur(2px); }
+    .code-card { position: relative; width: min(100%, 400px); padding: 24px; border: 1px solid rgba(110, 170, 255, .25); border-radius: 22px; background: linear-gradient(145deg, rgba(16, 34, 59, .97), rgba(7, 16, 31, .95)); box-shadow: var(--shadow); transform: rotate(2deg); }
+    .window-dots { display: flex; gap: 7px; margin-bottom: 25px; }
+    .window-dots i { width: 9px; height: 9px; display: block; border-radius: 50%; background: #ff6878; }
+    .window-dots i:nth-child(2) { background: #ffc857; } .window-dots i:nth-child(3) { background: #45d6a5; }
+    .code-line { font: 500 .93rem/2 "SFMono-Regular", Consolas, monospace; color: #d7e5fb; white-space: nowrap; }
+    .code-line .blue { color: #63baff; } .code-line .green { color: #75e0ba; } .code-line .purple { color: #c3a3ff; } .code-line .muted { color: #6e86a8; }
+    .floating-tag { position: absolute; border: 1px solid var(--border); background: #0b192c; border-radius: 12px; padding: 10px 14px; color: #dceaff; font-size: .83rem; box-shadow: var(--shadow); }
+    .tag-one { top: 42px; right: -6px; } .tag-two { bottom: 35px; left: -10px; }
+    section { padding: 76px 0; border-top: 1px solid var(--border); }
+    .section-heading { margin-bottom: 32px; }
+    .section-heading .eyebrow { margin-bottom: 9px; }
+    .section-heading h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -.035em; line-height: 1.2; }
+    .section-heading p { color: var(--muted); margin-top: 10px; max-width: 660px; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: stretch; }
+    .panel, .skill-card, .project-card, .education-card, .contact-card {
+      background: linear-gradient(145deg, rgba(13, 27, 47, .94), rgba(8, 17, 31, .94));
+      border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .panel { padding: 28px; }
+    .panel p { color: var(--muted); margin-top: 12px; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .fact { padding: 15px; border-radius: 13px; background: rgba(30, 75, 125, .15); border: 1px solid var(--border); }
+    .fact strong { display: block; color: var(--cyan); font-size: .95rem; margin-bottom: 4px; }
+    .fact span { color: var(--muted); font-size: .8rem; }
+    .goals { padding: 28px; }
+    .goals h3 { font-size: 1.2rem; margin-bottom: 18px; }
+    .goal-list { list-style: none; display: grid; gap: 13px; color: var(--muted); }
+    .goal-list li::before { content: "✓"; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(39,148,255,.16); color: var(--cyan); margin-right: 10px; font-weight: 900; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .skill-card { padding: 23px; transition: transform .22s, border-color .22s; }
+    .skill-card:hover, .project-card:hover { transform: translateY(-5px); border-color: rgba(65, 161, 255, .55); }
+    .skill-icon { font-size: 1.75rem; margin-bottom: 12px; }
+    .skill-card h3 { font-size: 1.05rem; margin-bottom: 12px; }
+    .skill-card ul { list-style: none; color: var(--muted); font-size: .9rem; display: grid; gap: 7px; }
+    .skill-card li::before { content: "›"; color: var(--blue); font-weight: 900; margin-right: 8px; }
+    .note { margin-top: 18px; color: var(--muted); font-size: .86rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { padding: 24px; display: flex; flex-direction: column; min-height: 290px; transition: transform .22s, border-color .22s; }
+    .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .project-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(39,148,255,.13); font-size: 1.45rem; }
+    .status { font-size: .72rem; font-weight: 800; border-radius: 999px; padding: 5px 9px; white-space: nowrap; color: #6ce4b3; background: rgba(45, 200, 143, .1); border: 1px solid rgba(45, 200, 143, .3); }
+    .status.progress { color: #7eb9ff; background: rgba(39,148,255,.1); border-color: rgba(39,148,255,.35); }
+    .status.planned { color: #ffd477; background: rgba(255,196,74,.08); border-color: rgba(255,196,74,.3); }
+    .project-card h3 { font-size: 1.14rem; margin-bottom: 9px; }
+    .project-card p { color: var(--muted); font-size: .92rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 20px; }
+    .chip { color: #a9d4ff; border: 1px solid rgba(67, 151, 244, .4); border-radius: 999px; padding: 4px 9px; font-size: .73rem; }
+    .education-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .education-card { padding: 26px; display: flex; gap: 18px; align-items: flex-start; }
+    .edu-icon { flex: 0 0 52px; height: 52px; display: grid; place-items: center; background: rgba(39,148,255,.13); border-radius: 14px; font-size: 1.5rem; }
+    .education-card h3 { font-size: 1.08rem; }
+    .education-card p { color: var(--muted); font-size: .92rem; margin-top: 5px; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 25px; align-items: stretch; }
+    .contact-intro { color: var(--muted); margin-top: 14px; max-width: 460px; }
+    .contact-detail { display: flex; align-items: center; gap: 13px; margin-top: 22px; color: var(--muted); }
+    .contact-detail .detail-icon { width: 43px; height: 43px; display: grid; place-items: center; background: rgba(39,148,255,.13); color: var(--cyan); border-radius: 12px; }
+    .contact-detail small { display: block; color: #8298b7; }
+    .contact-card { padding: 28px; }
+    .contact-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .contact-card p { color: var(--muted); margin-bottom: 22px; }
+    footer { border-top: 1px solid var(--border); padding: 24px 0; color: #8298b7; font-size: .86rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-tagline { color: #a9c9ed; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .nav-links { gap: 15px; }
+      .nav-contact { display: none; }
+      .hero-grid { gap: 25px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid .project-card:last-child { grid-column: span 2; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .nav-inner { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: #081222; border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 5px 0; }
+      .hero { padding: 62px 0 55px; }
+      .hero-grid, .about-grid, .education-layout, .contact-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 320px; margin-top: 8px; }
+      .code-card { width: min(100%, 365px); }
+      .tag-one { right: 0; } .tag-two { left: 0; }
+      section { padding: 58px 0; }
+      .facts { grid-template-columns: 1fr; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid .project-card:last-child { grid-column: auto; }
+      .project-card { min-height: 250px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Umar Chaudhary home"><span class="brand-mark">&lt;/&gt;</span><span>Umar Chaudhary</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a class="active" href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+        <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="btn nav-contact" href="mailto:umarcha265@gmail.com?subject=Portfolio%20Contact">✉ Contact Me</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" style="border-top:0">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">AI Student · Developer · Learner</span>
+          <h1>Hello, I'm<br><span class="gradient-text">Umar Chaudhary</span></h1>
+          <h2>BS Artificial Intelligence Student | BZU Multan</h2>
+          <p class="hero-copy">I’m passionate about solving problems and building useful digital experiences. I work with C++, Python, and modern web technologies while exploring how artificial intelligence can turn ideas into practical solutions.</p>
+          <div class="hero-actions">
+            <a class="btn" href="mailto:umarcha265@gmail.com?subject=Hello%20Umar">✉ Contact Me</a>
+            <a class="btn secondary" href="#projects">Explore My Projects <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="hero-art reveal" aria-label="Decorative code editor illustration">
+          <div class="orb"></div>
+          <div class="code-card">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="code-line"><span class="purple">class</span> <span class="blue">Developer</span> {</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">public:</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="green">learn</span>();</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="green">build</span>(<span class="blue">"ideas"</span>);</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="green">solveProblems</span>();</div>
+            <div class="code-line">};</div>
+            <br>
+            <div class="code-line"><span class="muted">// Always improving, one project at a time.</span></div>
+          </div>
+          <div class="floating-tag tag-one">✦ Curious about AI</div>
+          <div class="floating-tag tag-two">⌘ Code · Learn · Build</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">A little about me</span><h2>Building my future in technology</h2></div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>Who I Am</h3>
+            <p>I’m Umar Chaudhary, a third-semester BS Artificial Intelligence student at Bahauddin Zakariya University (BZU), Multan. I enjoy learning programming, strengthening my problem-solving skills, and turning what I learn into projects.</p>
+            <p>My current focus is improving my C++ and Data Structures & Algorithms foundations, developing with Python and its frameworks, and creating clean, responsive websites. I’m also exploring opportunities to collaborate, freelance, and learn from real-world work.</p>
+            <div class="facts">
+              <div class="fact"><strong>BS AI</strong><span>3rd semester</span></div>
+              <div class="fact"><strong>Multan</strong><span>Punjab, Pakistan</span></div>
+              <div class="fact"><strong>Open to</strong><span>Learning & collaboration</span></div>
+            </div>
+          </article>
+          <aside class="panel goals reveal">
+            <h3>My Goals</h3>
+            <ul class="goal-list">
+              <li>Strengthen DSA and software development skills.</li>
+              <li>Build useful Python, AI, and web projects.</li>
+              <li>Gain practical experience through collaboration and freelancing.</li>
+              <li>Develop a student-focused freelance agency platform.</li>
+              <li>Keep learning and create technology that helps people.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">My toolkit</span><h2>Skills & technologies</h2><p>Tools and concepts I’m using and developing as I grow as a programmer.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><div class="skill-icon">⚙️</div><h3>C++ & Problem Solving</h3><ul><li>Programming fundamentals</li><li>Object-oriented programming</li><li>Data Structures & Algorithms</li><li>Logical problem solving</li></ul></article>
+          <article class="skill-card reveal"><div class="skill-icon">🐍</div><h3>Python</h3><ul><li>Python fundamentals</li><li>Working with frameworks</li><li>Scripting and automation</li><li>Exploring AI applications</li></ul></article>
+          <article class="skill-card reveal"><div class="skill-icon">🌐</div><h3>Web Development</h3><ul><li>HTML5</li><li>CSS3 and responsive layouts</li><li>Website structure and styling</li><li>JavaScript fundamentals</li></ul></article>
+          <article class="skill-card reveal"><div class="skill-icon">🧰</div><h3>Tools & Growth</h3><ul><li>Visual Studio Code</li><li>Git and GitHub (learning)</li><li>Debugging and testing</li><li>Teamwork and communication</li></ul></article>
+        </div>
+        <p class="note">I’m continuously improving these skills. Frameworks and tools listed here reflect my learning areas, not a claim of expert-level proficiency.</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">What I'm creating</span><h2>Featured projects</h2><p>A selection of projects that represent my current work and the ideas I’m developing next.</p></div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-top"><div class="project-icon">⌘</div><span class="status">Current Project</span></div>
+            <h3>Personal Portfolio Website</h3>
+            <p>A personal website to introduce myself, present my technical skills, showcase projects, and make it easy for people to contact me.</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Responsive Design</span></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-top"><div class="project-icon">🤝</div><span class="status progress">In Progress</span></div>
+            <h3>Student Freelance Agency</h3>
+            <p>A student-focused platform concept to connect student talent with clients, encourage collaboration, and help students gain practical project experience.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Web Development</span><span class="chip">Platform Idea</span></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-top"><div class="project-icon">✧</div><span class="status planned">Planned</span></div>
+            <h3>AI & Python Experiments</h3>
+            <p>A growing collection of small projects to practise automation, programming logic, and practical applications of AI as my skills develop.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Automation</span><span class="chip">AI Learning</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">My journey</span><h2>Education & interests</h2></div>
+        <div class="education-layout">
+          <article class="education-card reveal"><div class="edu-icon">🎓</div><div><h3>Bahauddin Zakariya University, Multan</h3><p><strong>BS Artificial Intelligence</strong> · 3rd Semester</p><p>Building a foundation in computing, programming, and artificial intelligence.</p></div></article>
+          <article class="education-card reveal"><div class="edu-icon">💡</div><div><h3>What I Enjoy</h3><p>Programming · Learning new technologies · Problem solving · AI innovation · Building practical projects</p><p>I believe consistent practice and curiosity are key to becoming a better developer.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <div class="section-heading"><span class="eyebrow">Let's connect</span><h2>Have an idea?<br><span class="gradient-text">Let's talk.</span></h2></div>
+          <p class="contact-intro">I’m happy to connect about student projects, collaboration, learning opportunities, and suitable freelance work. Send me an email and let’s start a conversation.</p>
+          <div class="contact-detail"><span class="detail-icon">✉</span><div><small>Email me at</small><strong>umarcha265@gmail.com</strong></div></div>
+          <div class="contact-detail"><span class="detail-icon">📍</span><div><small>Based in</small><strong>Multan, Punjab, Pakistan</strong></div></div>
+        </div>
+        <div class="contact-card reveal">
+          <h3>Get in touch</h3>
+          <p>Click below to open your email application with my address ready. I look forward to hearing from you.</p>
+          <a class="btn" href="mailto:umarcha265@gmail.com?subject=Portfolio%20Contact%20-%20Umar%20Chaudhary">✉ Email Umar Chaudhary</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Umar Chaudhary. All rights reserved.</span>
+      <span class="footer-tagline">Code <span aria-hidden="true">·</span> Learn <span aria-hidden="true">·</span> Build <span aria-hidden="true">·</span> Grow</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('main section[id]');
+    const navItems = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(item => {
+            item.classList.toggle('active', item.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    sections.forEach(section => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
